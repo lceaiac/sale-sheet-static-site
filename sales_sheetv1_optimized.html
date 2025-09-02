@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cannabis Product Sales Sheet - Honest Pharm Co</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.0/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        :root {
+            /* Design Tokens */
+            --color-primary: #10B981;
+            --color-primary-dark: #059669;
+            --color-secondary: #3B82F6;
+            --color-accent: #14B8A6;
+            --color-surface: #FFFFFF;
+            --color-background: #F8FAFC;
+            --color-background-alt: #F1F5F9;
+            --color-text-primary: #0F172A;
+            --color-text-secondary: #475569;
+            --color-text-muted: #64748B;
+            --color-border: #E2E8F0;
+            --color-border-light: #F1F5F9;
+            
+            /* Spacing Scale */
+            --space-xs: 0.25rem;
+            --space-sm: 0.5rem;
+            --space-md: 0.75rem;
+            --space-lg: 1rem;
+            --space-xl: 1.5rem;
+            --space-2xl: 2rem;
+            --space-3xl: 3rem;
+            --space-4xl: 4rem;
+            
+            /* Typography Scale */
+            --text-xs: 0.75rem;
+            --text-sm: 0.875rem;
+            --text-base: 1rem;
+            --text-lg: 1.125rem;
+            --text-xl: 1.25rem;
+            --text-2xl: 1.5rem;
+            --text-3xl: 1.875rem;
+            --text-4xl: 2.25rem;
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            
+            /* Border Radius */
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #FFFFFF;
+            color: var(--color-text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: var(--space-lg);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: var(--space-3xl);
+            padding: var(--space-2xl) 0;
+            background: #FFFFFF;
+        }
+        
+        .logo {
+            max-width: 320px;
+            height: auto;
+            margin: 0 auto var(--space-xl);
+            display: block;
+            background: transparent;
+            padding: 20px;
+            border-radius: 12px;
+        }
+        
+        .header-subtitle {
+            font-size: var(--text-lg);
+            color: var(--color-text-secondary);
+            font-weight: 400;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .promo-section {
+            background: #FFFFFF;
+            color: var(--color-text-primary);
+            border-radius: var(--radius-xl);
+            padding: var(--space-3xl) var(--space-2xl);
+            margin-bottom: var(--space-4xl);
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid var(--color-accent);
+        }
+        
+        .promo-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, transparent 50%, rgba(255,255,255,0.1) 100%);
+            pointer-events: none;
+        }
+        
+        .promo-title {
+            font-size: clamp(var(--text-xl), 4vw, var(--text-3xl));
+            font-weight: 800;
+            margin-bottom: var(--space-lg);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .promo-subtitle {
+            font-size: clamp(var(--text-lg), 3vw, var(--text-xl));
+            font-weight: 600;
+            margin-bottom: var(--space-sm);
+        }
+        
+        .promo-details {
+            font-size: var(--text-sm);
+            opacity: 0.9;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--space-xl);
+            margin-bottom: var(--space-4xl);
+        }
+        
+        .product-card {
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--color-border-light);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--color-primary);
+        }
+        
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .product-card:hover::before {
+            opacity: 1;
+        }
+        
+        .product-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-lg);
+            flex-wrap: wrap;
+            gap: var(--space-sm);
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            border-radius: var(--radius-md);
+            margin-bottom: var(--space-lg);
+            background: #FFFFFF !important;
+            transition: transform 0.3s ease;
+        }
+        
+        .flower-image {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            border-radius: var(--radius-md);
+            margin-bottom: var(--space-lg);
+            background: #FFFFFF !important;
+            border: 1px solid var(--color-border);
+            transition: transform 0.3s ease;
+        }
+        
+        .product-card:hover .product-image,
+        .product-card:hover .flower-image {
+            transform: scale(1.02);
+        }
+        
+        .product-title {
+            font-size: var(--text-lg);
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-sm);
+            line-height: 1.4;
+        }
+        
+        .strain-tag {
+            display: inline-flex;
+            align-items: center;
+            padding: var(--space-xs) var(--space-md);
+            border-radius: var(--radius-xl);
+            font-size: var(--text-xs);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: var(--space-lg);
+        }
+        
+        .tag-indica {
+            background: linear-gradient(135deg, #4C1D95 0%, #5B21B6 100%);
+            color: white;
+        }
+        
+        .tag-sativa {
+            background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+            color: white;
+        }
+        
+        .tag-hybrid {
+            background: linear-gradient(135deg, #7C3AED 0%, #8B5CF6 100%);
+            color: white;
+        }
+        
+        .thc-tag {
+            background: linear-gradient(135deg, var(--color-text-primary) 0%, #374151 100%);
+            color: white;
+            padding: var(--space-xs) var(--space-md);
+            border-radius: var(--radius-sm);
+            font-size: var(--text-xs);
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .price-tag {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            color: white;
+            padding: var(--space-xs) var(--space-md);
+            border-radius: var(--radius-sm);
+            font-size: var(--text-xs);
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .product-description {
+            font-size: var(--text-sm);
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-lg);
+            line-height: 1.5;
+        }
+        
+        .quantities-section {
+            margin-top: var(--space-lg);
+        }
+        
+        .quantities-title {
+            font-size: var(--text-xs);
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-sm);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .quantities {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-sm);
+            align-items: center;
+            justify-content: flex-start;
+        }
+        
+        .quantity-tag {
+            background: var(--color-background-alt);
+            color: var(--color-text-secondary);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: var(--radius-sm);
+            font-size: var(--text-xs);
+            font-weight: 500;
+            border: 1px solid var(--color-border);
+            transition: all 0.2s ease;
+            min-width: fit-content;
+            text-align: center;
+            white-space: nowrap;
+        }
+        
+        .quantity-tag:hover {
+            background: var(--color-primary);
+            color: white;
+            border-color: var(--color-primary);
+            transform: translateY(-1px);
+        }
+        
+        .footer {
+            text-align: center;
+            padding: var(--space-3xl) 0;
+            border-top: 1px solid var(--color-border);
+            margin-top: var(--space-4xl);
+        }
+        
+        .footer p {
+            font-size: var(--text-sm);
+            color: var(--color-text-muted);
+            margin: var(--space-sm) 0;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: var(--space-md);
+            }
+            
+            .product-grid {
+                grid-template-columns: 1fr;
+                gap: var(--space-lg);
+            }
+            
+            .promo-section {
+                padding: var(--space-2xl) var(--space-lg);
+                margin-bottom: var(--space-2xl);
+            }
+            
+            .product-header {
+                justify-content: center;
+                text-align: center;
+            }
+        }
+        
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (min-width: 1025px) {
+            .product-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        /* Focus States for Accessibility */
+        .product-card:focus-within {
+            outline: 2px solid var(--color-primary);
+            outline-offset: 2px;
+        }
+        
+        .quantity-tag:focus {
+            outline: 2px solid var(--color-primary);
+            outline-offset: 2px;
+        }
+        
+        /* Ultra-compact layout for maximum content utilization */
+        body {
+            font-size: 8px;
+            line-height: 1.1;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: none;
+            padding: 0.25rem;
+        }
+        
+        .header {
+            margin-bottom: 0.25rem;
+            padding: 0.25rem 0;
+        }
+        
+        .logo {
+            max-width: 160px;
+            margin-bottom: 0.15rem;
+            padding: 2px;
+        }
+        
+        .header-subtitle {
+            font-size: 9px;
+            margin: 0;
+        }
+        
+        .promo-section {
+            padding: 0.4rem;
+            margin-bottom: 0.2rem;
+        }
+        
+        .promo-title {
+            font-size: 15px;
+            margin-bottom: 0.1rem;
+        }
+        
+        .promo-subtitle {
+            font-size: 11px;
+            margin-bottom: 0.1rem;
+        }
+        
+        .promo-details {
+            font-size: 9px;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.3rem;
+            margin-bottom: 0.2rem;
+        }
+        
+        .product-card {
+            padding: 0.35rem;
+            font-size: 7.5px;
+        }
+        
+        .product-image,
+        .flower-image {
+            height: 70px;
+            margin-bottom: 0.2rem;
+        }
+        
+        .product-title {
+            font-size: 9px;
+            margin-bottom: 0.2rem;
+            line-height: 1.2;
+        }
+        
+        .product-description {
+            font-size: 7px;
+            margin-bottom: 0.2rem;
+            line-height: 1.3;
+        }
+        
+        .strain-tag,
+        .thc-tag,
+        .price-tag {
+            font-size: 6px;
+            padding: 0.08rem 0.2rem;
+            margin: 0.05rem;
+        }
+        
+        .quantities-title {
+            font-size: 6px;
+            margin-bottom: 0.15rem;
+        }
+        
+        .quantity-tag {
+            font-size: 6px;
+            padding: 0.08rem 0.2rem;
+            margin: 0.03rem;
+        }
+        
+        .footer {
+            margin-top: 0.25rem;
+            padding: 0.15rem 0;
+            font-size: 6px;
+        }
+        
+        .qr-code {
+            max-width: 40px;
+            height: auto;
+        }
+        
+        /* Print Styles for 8.5x11 Paper */
+        @media print {
+            @page {
+                size: 8.5in 11in;
+                margin: 0.3in;
+            }
+            
+            * {
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <img src="HPC_ChromeLogo.png" alt="Honest Pharm Co Logo" class="logo">
+            <p class="header-subtitle">Premium quality cannabis products, tested for potency and purity</p>
+        </header>
+        
+        <section class="promo-section" role="banner">
+            <h1 class="promo-title">SEPTEMBER PROMOS</h1>
+            <p class="promo-subtitle">Baker's Dozen Special - Buy 12 lbs, Get One FREE!</p>
+            <p class="promo-details">Limited time offer, valid through September 30, 2025</p>
+        </section>
+        
+        <main class="product-grid" role="main">
+            <!-- Double Hitter Indica -->
+            <article class="product-card">
+                <div class="product-header">
+                    <span class="thc-tag">Conc: 82% | Flwr: 28%</span>
+                    <span class="price-tag">$12.50</span>
+                </div>
+                <img src="Double Hitter Indica.png" alt="Double Hitter Indica" class="product-image">
+                <div class="product-info">
+                    <h2 class="product-title">Double Hitter Indica</h2>
+                    <span class="strain-tag tag-indica">Indica</span>
+                    <p class="product-description">Ice Cream Cake infused live resin vape filter tip x Big Berry Blue flower.</p>
+                    <div class="quantities-section">
+                        <h3 class="quantities-title">Available Quantities:</h3>
+                        <div class="quantities">
+                            <span class="quantity-tag">0.25g concentrate</span>
+                            <span class="quantity-tag">1.0g flower</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            
+            <!-- Double Hitter Sativa -->
+            <article class="product-card">
+                <div class="product-header">
+                     <span class="thc-tag">Conc: 82% | Flwr: 32%</span>
+                     <span class="price-tag">$12.50</span>
+                 </div>
+                <img src="Double Hitter Sativa.png" alt="Double Hitter Sativa" class="product-image">
+                <div class="product-info">
+                    <h2 class="product-title">Double Hitter Sativa</h2>
+                    <span class="strain-tag tag-sativa">Sativa</span>
+                    <p class="product-description">Laughing Buddha infused live resin vape filter tip  x Acapulco Gold flower</p>
+                    <div class="quantities-section">
+                        <h3 class="quantities-title">Available Quantities:</h3>
+                        <div class="quantities">
+                            <span class="quantity-tag">0.25g concentrate</span>
+                            <span class="quantity-tag">1.0g flower</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            
+            <!-- Double Hitter Hybrid -->
+            <article class="product-card">
+                <div class="product-header">
+                     <span class="thc-tag">Conc: 82% | Flwr: 28%</span>
+                     <span class="price-tag">$12.50</span>
+                 </div>
+                <img src="Double Hitter Hybrid.png" alt="Double Hitter Hybrid" class="product-image">
+                <div class="product-info">
+                    <h2 class="product-title">Double Hitter Hybrid</h2>
+                    <span class="strain-tag tag-hybrid">Hybrid</span>
+                    <p class="product-description">Gary Payton infused live resin vape filter tip x Skywalker flower.</p>
+                    <div class="quantities-section">
+                        <h3 class="quantities-title">Available Quantities:</h3>
+                        <div class="quantities">
+                            <span class="quantity-tag">0.25g concentrate</span>
+                            <span class="quantity-tag">1.0g flower</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            
+            <!-- 3-Variety Pack -->
+            <article class="product-card">
+                <div class="product-header">
+                    <span class="thc-tag">THC: 82%</span>
+                    <span class="price-tag">$15.00</span>
+                </div>
+                <img src="Double Hitter 3 Pack.png" alt="3-Variety Pack" class="product-image">
+                <div class="product-info">
+                    <h2 class="product-title">Double Hitter 3-Variety Pack</h2>
+                    <span class="strain-tag tag-hybrid">Mixed</span>
+                    <p class="product-description">Experience all three Double Hitter varieties in one convenient pack.</p>
+                    <div class="quantities-section">
+                        <h3 class="quantities-title">Includes:</h3>
+                        <div class="quantities">
+                            <span class="quantity-tag">1 Sativa</span>
+                            <span class="quantity-tag">1 Indica</span>
+                            <span class="quantity-tag">1 Hybrid</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            
+            <!-- Chemdawg -->
+            <article class="product-card">
+                <div class="product-header">
+                    <span class="thc-tag">THC: 24%</span>
+                </div>
+                <img src="Chemdawg.png" alt="Chemdawg Premium Cannabis Flower" class="flower-image">
+                <div class="product-info">
+                    <h2 class="product-title">Chemdawg</h2>
+                    <span class="strain-tag tag-hybrid">Hybrid</span>
+                    <p class="product-description">Classic hybrid with diesel and pine; dense, frost‑covered buds and a balanced profile.</p>
+                    <div class="quantities-section">
+                        <h3 class="quantities-title">Available Quantities:</h3>
+                        <div class="quantities">
+                            <span class="quantity-tag">3.5g - $18</span>
+                            <span class="quantity-tag">7g - $35</span>
+                            <span class="quantity-tag">14g - $50</span>
+                            <span class="quantity-tag">28g - $90</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            
+            <!-- Icebox Pie -->
+            <article class="product-card">
+                <div class="product-header">
+                    <span class="thc-tag">THC: 29%</span>
+                </div>
+                <img src="Icebox_Pie.png" alt="Icebox Pie Premium Cannabis Flower" class="flower-image">
+                <div class="product-info">
+                    <h2 class="product-title">Icebox Pie</h2>
+                    <span class="strain-tag tag-hybrid">Hybrid</span>
+                    <p class="product-description">Dessert‑leaning hybrid with sweet berry and cool mint notes, purple hues, and heavy trichomes.</p>
+                    <div class="quantities-section">
+                        <h3 class="quantities-title">Available Quantities:</h3>
+                        <div class="quantities">
+                            <span class="quantity-tag">3.5g - $18</span>
+                            <span class="quantity-tag">7g - $35</span>
+                            <span class="quantity-tag">14g - $50</span>
+                            <span class="quantity-tag">28g - $90</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            
+            <!-- Midnight Cookies -->
+            <article class="product-card">
+                <div class="product-header">
+                    <span class="thc-tag">THC: 27%</span>
+                </div>
+                <img src="Midnight_Cookies.png" alt="Midnight Cookies Premium Cannabis Flower" class="flower-image">
+                <div class="product-info">
+                    <h2 class="product-title">Midnight Cookies</h2>
+                    <span class="strain-tag tag-indica">Indica</span>
+                    <p class="product-description">Frosty indica with cookie‑dough aromatics and a smooth, dessert‑like finish.</p>
+                    <div class="quantities-section">
+                        <h3 class="quantities-title">Available Quantities:</h3>
+                        <div class="quantities">
+                            <span class="quantity-tag">3.5g - $18</span>
+                            <span class="quantity-tag">7g - $35</span>
+                            <span class="quantity-tag">14g - $50</span>
+                            <span class="quantity-tag">28g - $90</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            
+            <!-- Wedding Cake -->
+            <article class="product-card">
+                <div class="product-header">
+                    <span class="thc-tag">THC: 23%</span>
+                </div>
+                <img src="Wedding_Cake.png" alt="Wedding Cake Premium Cannabis Flower" class="flower-image">
+                <div class="product-info">
+                    <h2 class="product-title">Wedding Cake</h2>
+                    <span class="strain-tag tag-indica">Indica</span>
+                    <p class="product-description">Indica classic with vanilla‑frosting sweetness over earthy, peppery undertones; dense buds.</p>
+                    <div class="quantities-section">
+                        <h3 class="quantities-title">Available Quantities:</h3>
+                        <div class="quantities">
+                            <span class="quantity-tag">3.5g - $18</span>
+                            <span class="quantity-tag">7g - $35</span>
+                            <span class="quantity-tag">14g - $50</span>
+                            <span class="quantity-tag">28g - $90</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            
+            <!-- Red Velvet -->
+            <article class="product-card">
+                <div class="product-header">
+                    <span class="thc-tag">THC: 23%</span>
+                </div>
+                <img src="Red_Velvet.png" alt="Red Velvet" class="product-image">
+                <div class="product-info">
+                    <h2 class="product-title">Red Velvet</h2>
+                    <span class="strain-tag tag-sativa">Sativa</span>
+                    <p class="product-description">Bright sativa with cocoa‑and‑cream aromatics over light spice; fluffy, resin‑dusted nugs.</p>
+                    <div class="quantities-section">
+                        <h3 class="quantities-title">Available Quantities:</h3>
+                        <div class="quantities">
+                            <span class="quantity-tag">3.5g - $18</span>
+                            <span class="quantity-tag">7g - $35</span>
+                            <span class="quantity-tag">14g - $50</span>
+                            <span class="quantity-tag">28g - $90</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            
+            <!-- Puma PR-13 & Puma Piss -->
+            <article class="product-card">
+                <div class="product-header">
+                    <span class="thc-tag">PR-13: 25% | PUMA PISS: 23%</span>
+                    <span class="price-tag">$5.00</span>
+                </div>
+                <div style="display: flex; justify-content: space-around; align-items: center; margin-bottom: 1rem;">
+                    <div style="text-align: center;">
+                        <img src="Puma PR13.png" alt="Puma PR-13" class="product-image">
+                        <h2 class="product-title">PUMA PR-13</h2>
+                        <span class="strain-tag tag-indica">Indica</span>
+                    </div>
+                    <div style="text-align: center;">
+                        <img src="Puma Piss.png" alt="Puma Piss" class="product-image">
+                        <h2 class="product-title">PUMA PISS</h2>
+                        <span class="strain-tag tag-hybrid">Hybrid</span>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <p class="product-description">Premium 1 gram blunts.</p>
+                    <div class="quantities-section">
+                        <h3 class="quantities-title">Available Quantities:</h3>
+                        <div class="quantities">
+                            <span class="quantity-tag">1g blunt</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            
+            <!-- Day to Night Pre-Roll 4-pack -->
+            <article class="product-card">
+                <div class="product-header">
+                    <span class="thc-tag">Day: 31% | Night: 27%</span>
+                    <span class="price-tag">$18.00</span>
+                </div>
+                <img src="Day to Night.png" alt="Day to Night Pre-Roll 4-pack" class="product-image">
+                <div class="product-info">
+                    <h2 class="product-title">Day to Night Pre-Roll 4-pack</h2>
+                    <span class="strain-tag tag-sativa">Sativa</span>
+                    <span class="strain-tag tag-indica">Indica</span>
+                    <p class="product-description">Pack of 4 Pre-Rolls.</p>
+                    <div class="quantities-section">
+                        <h3 class="quantities-title">Available Quantities:</h3>
+                        <div class="quantities">
+                            <span class="quantity-tag">2 Sativa 1g Pre-Rolls and 2 Indica 1g Pre-Rolls</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            
+
+            <!-- Jam Master Jays -->
+            <article class="product-card">
+                <div class="product-header">
+                    <span class="thc-tag">THC: 30%</span>
+                    <span class="price-tag">$15.00</span>
+                </div>
+                <img src="JMJ.png" alt="Jam Master Jays" class="product-image">
+                <div class="product-info">
+                    <h2 class="product-title">Jam Master Jays</h2>
+                    <span class="strain-tag tag-hybrid">Hybrid</span>
+                    <p class="product-description">Pack of 4 premium pre-rolls.</p>
+                    <div class="quantities-section">
+                        <h3 class="quantities-title">Available Quantities:</h3>
+                        <div class="quantities">
+                            <span class="quantity-tag">4-Pack 2g</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            
+
+        </main>
+        
+        <!-- Order & Connect Section -->
+        <section class="order-connect-section" style="text-align: center; padding: 40px 20px; background-color: #f8f9fa; margin-top: 40px;">
+            <h2 style="color: #2c5530; margin-bottom: 20px; font-size: 2rem;">Order & Connect</h2>
+            <p style="margin-bottom: 10px; font-size: 0.6rem; color: #666;">Scan QR code to order or connect</p>
+                <div style="text-align: center;">
+                    <img src="QR code.png" alt="Order & Connect QR Code" class="qr-code" style="border: 1px solid #2c5530; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+            </div>
+        </section>
+        
+        <footer class="footer">
+            <p>© 2025 All products are tested for quality and potency.</p>
+            <p>For wholesale inquiries, please contact david@honestpharmco.com | 585-519-9778</p>
+        </footer>
+    </div>
+</body>
+</html>

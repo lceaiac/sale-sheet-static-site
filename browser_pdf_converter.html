@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cannabis Sales Sheet PDF Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .converter-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .logo {
+            max-width: 200px;
+            margin-bottom: 20px;
+        }
+        .instructions {
+            background: #e8f4fd;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #2196F3;
+        }
+        .step {
+            margin-bottom: 15px;
+            padding: 10px;
+            background: #f9f9f9;
+            border-radius: 5px;
+        }
+        .step-number {
+            background: #2196F3;
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        .button {
+            background: #4CAF50;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .button:hover {
+            background: #45a049;
+        }
+        .button.secondary {
+            background: #2196F3;
+        }
+        .button.secondary:hover {
+            background: #1976D2;
+        }
+        .preview-frame {
+            width: 100%;
+            height: 600px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .tips {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #ffc107;
+            margin-top: 20px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="converter-container">
+        <div class="header">
+            <h1>🌿 Cannabis Sales Sheet PDF Converter</h1>
+            <p>Convert your sales sheet to a single-page PDF using your browser</p>
+        </div>
+
+        <div class="instructions">
+            <h3>📋 How to Convert to PDF:</h3>
+            
+            <div class="step">
+                <span class="step-number">1</span>
+                <strong>Open the Sales Sheet:</strong> Click the button below to open your sales sheet in a new tab.
+            </div>
+            
+            <div class="step">
+                <span class="step-number">2</span>
+                <strong>Print to PDF:</strong> In the new tab, press <kbd>Ctrl+P</kbd> (or <kbd>Cmd+P</kbd> on Mac) to open the print dialog.
+            </div>
+            
+            <div class="step">
+                <span class="step-number">3</span>
+                <strong>Select PDF:</strong> Choose "Save as PDF" or "Microsoft Print to PDF" as your printer destination.
+            </div>
+            
+            <div class="step">
+                <span class="step-number">4</span>
+                <strong>Configure Settings:</strong>
+                <ul style="margin: 10px 0; padding-left: 20px;">
+                    <li>Paper size: A4 or Letter</li>
+                    <li>Orientation: Portrait</li>
+                    <li>Margins: Minimum or Custom (0.2 inches)</li>
+                    <li>Scale: Custom 85-90% (to fit everything on one page)</li>
+                    <li>Options: Check "Background graphics"</li>
+                </ul>
+            </div>
+            
+            <div class="step">
+                <span class="step-number">5</span>
+                <strong>Save PDF:</strong> Click "Save" and choose your desired location and filename.
+            </div>
+        </div>
+
+        <div style="text-align: center; margin: 30px 0;">
+            <a href="sales_sheetv1.html" target="_blank" class="button">
+                🚀 Open Sales Sheet for PDF Conversion
+            </a>
+            <br><br>
+            <button onclick="showPreview()" class="button secondary">
+                👁️ Preview Sales Sheet Here
+            </button>
+        </div>
+
+        <div id="preview-container" style="display: none;">
+            <h3>📄 Sales Sheet Preview:</h3>
+            <iframe id="preview-frame" class="preview-frame" src="sales_sheetv1.html"></iframe>
+            <p style="text-align: center;">
+                <em>This is a preview. To convert to PDF, use the "Open Sales Sheet" button above and follow the instructions.</em>
+            </p>
+        </div>
+
+        <div class="tips">
+            <h4>💡 Pro Tips for Best Results:</h4>
+            <ul>
+                <li><strong>Scale Adjustment:</strong> If content doesn't fit on one page, try reducing the scale to 80-85% in print settings</li>
+                <li><strong>Browser Choice:</strong> Chrome and Edge typically provide the best PDF conversion results</li>
+                <li><strong>Background Graphics:</strong> Make sure "Background graphics" is enabled to include all styling and colors</li>
+                <li><strong>Page Breaks:</strong> The CSS is optimized to avoid page breaks, but you can adjust margins if needed</li>
+                <li><strong>Image Quality:</strong> For best image quality, ensure all PNG files are in the same folder as the HTML file</li>
+            </ul>
+        </div>
+
+        <div class="tips" style="background: #d1ecf1; border-left-color: #17a2b8;">
+            <h4>🔧 Troubleshooting:</h4>
+            <ul>
+                <li><strong>Images Missing:</strong> Make sure all PNG files are in the same directory as sales_sheetv1.html</li>
+                <li><strong>Content Cut Off:</strong> Reduce the scale percentage in print settings (try 75-80%)</li>
+                <li><strong>Multiple Pages:</strong> Adjust margins to "Minimum" and scale to 80-85%</li>
+                <li><strong>Poor Quality:</strong> Use Chrome or Edge browser for better PDF rendering</li>
+            </ul>
+        </div>
+
+        <div style="background: #d4edda; padding: 15px; border-radius: 5px; border-left: 4px solid #28a745; margin-top: 20px;">
+            <h4>✅ Alternative Method - Python Scripts:</h4>
+            <p>If you prefer automated conversion, you can still use the Python scripts provided:</p>
+            <ul>
+                <li><code>html_to_pdf_converter.py</code> - Main converter (requires weasyprint)</li>
+                <li><code>html_to_pdf_alternative.py</code> - Alternative converter (requires pdfkit)</li>
+                <li><code>setup_and_convert.bat</code> - Automated setup for Windows</li>
+            </ul>
+            <p><em>Note: Python scripts may require additional system libraries on Windows.</em></p>
+        </div>
+
+        <div class="footer">
+            <p>© 2025 Cannabis Sales Sheet PDF Converter</p>
+            <p>For support: david@honestpharmco.com | 585-519-9778</p>
+        </div>
+    </div>
+
+    <script>
+        function showPreview() {
+            const previewContainer = document.getElementById('preview-container');
+            const previewFrame = document.getElementById('preview-frame');
+            
+            if (previewContainer.style.display === 'none') {
+                previewContainer.style.display = 'block';
+                // Reload the iframe to ensure it loads properly
+                previewFrame.src = previewFrame.src;
+            } else {
+                previewContainer.style.display = 'none';
+            }
+        }
+
+        // Add keyboard shortcut info
+        document.addEventListener('DOMContentLoaded', function() {
+            // Detect if user is on Mac
+            const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+            const printShortcut = isMac ? 'Cmd+P' : 'Ctrl+P';
+            
+            // Update all instances of Ctrl+P to show the correct shortcut
+            const elements = document.querySelectorAll('kbd');
+            elements.forEach(el => {
+                if (el.textContent === 'Ctrl+P') {
+                    el.textContent = printShortcut;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
