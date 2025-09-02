@@ -253,6 +253,14 @@
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.05em;
+            margin-right: var(--space-sm);
+            margin-bottom: var(--space-sm);
+        }
+        
+        .strain-tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-sm);
             margin-bottom: var(--space-lg);
         }
         
@@ -774,8 +782,10 @@
                 <img src="Day to Night.png" alt="Day to Night Pre-Roll 4-pack" class="product-image">
                 <div class="product-info">
                     <h2 class="product-title">Day to Night Pre-Roll 4-pack</h2>
-                    <span class="strain-tag tag-sativa">Sativa</span>
-                    <span class="strain-tag tag-indica">Indica</span>
+                    <div class="strain-tags-container">
+                        <span class="strain-tag tag-sativa">Sativa</span>
+                        <span class="strain-tag tag-indica">Indica</span>
+                    </div>
                     <p class="product-description">Pack of 4 Pre-Rolls.</p>
                     <div class="quantities-section">
                         <h3 class="quantities-title">Available Quantities:</h3>
@@ -809,11 +819,6 @@
             
 
         </main>
-        
-        <footer class="footer">
-            <p>© 2025 All products are tested for quality and potency.</p>
-            <p>For wholesale inquiries, please contact david@honestpharmco.com | 585-519-9778</p>
-        </footer>
     </div>
     
     <!-- Second Page with QR Code -->
@@ -826,6 +831,11 @@
                 <p style="font-size: var(--text-sm); color: var(--color-text-secondary); margin: 0;">Contact: david@honestpharmco.com | 585-519-9778</p>
             </div>
         </div>
+        
+        <footer class="footer">
+            <p>© 2025 All products are tested for quality and potency.</p>
+            <p>For wholesale inquiries, please contact david@honestpharmco.com | 585-519-9778</p>
+        </footer>
     </div>
 </body>
 </html>
