@@ -6,14 +6,15 @@
     <title>Cannabis Product Sales Sheet - Honest Pharm Co</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.0/dist/tailwind.min.css" rel="stylesheet">
     <style>
         :root {
-            /* Design Tokens */
-            --color-primary: #10B981;
-            --color-primary-dark: #059669;
-            --color-secondary: #3B82F6;
-            --color-accent: #14B8A6;
+            /* Design Tokens - Honest Pharm CO Cannabis Theme */
+            --color-primary: #2d5016; /* dark forest green */
+            --color-primary-dark: #1a2f0c; /* darker forest green */
+            --color-secondary: #a7c957; /* light green */
+            --color-accent: #2d5016;
             --color-surface: #FFFFFF;
             --color-background: #F8FAFC;
             --color-background-alt: #F1F5F9;
@@ -22,6 +23,8 @@
             --color-text-muted: #64748B;
             --color-border: #E2E8F0;
             --color-border-light: #F1F5F9;
+            --color-license-green: #2d5016;
+            --color-license-bg: rgba(45, 80, 22, 0.1);
             
             /* Spacing Scale */
             --space-xs: 0.25rem;
@@ -74,25 +77,108 @@
         .container {
             max-width: 1280px;
             margin: 0 auto;
-            padding: var(--space-lg);
+            padding: var(--space-sm) var(--space-lg);
         }
         
         .header {
             text-align: center;
-            margin-bottom: var(--space-xl);
-            padding: var(--space-sm) 0;
+            margin-bottom: var(--space-md);
+            padding: var(--space-xs) 0;
             background: #FFFFFF;
         }
         
+        /* Responsive Logo System */
         .logo {
-            max-width: 320px;
             height: auto;
-            margin: 0 auto var(--space-sm);
+            margin: 0 auto var(--space-xs);
             display: block;
             background: transparent;
-            padding: 10px;
+            padding: 6px;
             border-radius: 12px;
+            transition: all 0.3s ease;
         }
+        
+        .logo-wide {
+            max-width: 612px;
+            max-height: 136px;
+            width: auto;
+            height: auto;
+        }
+         
+         .logo-narrow {
+            max-width: 272px;
+            max-height: 102px;
+            width: auto;
+            height: auto;
+        }
+        
+        /* License and Location Badge Styles */
+        .license-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: var(--space-lg);
+            margin: var(--space-md) 0;
+            flex-wrap: wrap;
+        }
+        
+        .license-badge {
+             background: var(--color-license-bg);
+             border: 2px solid var(--color-license-green);
+             border-radius: var(--radius-lg);
+             padding: var(--space-sm) var(--space-lg);
+             display: flex;
+             align-items: center;
+             gap: var(--space-sm);
+             font-size: var(--text-sm);
+             font-weight: 600;
+             color: var(--color-license-green);
+             font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+             text-transform: uppercase;
+             letter-spacing: 0.5px;
+         }
+        
+        .license-indicator {
+            width: 8px;
+            height: 8px;
+            background: var(--color-license-green);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        .location-badge {
+             background: var(--color-license-bg);
+             border: 2px solid var(--color-license-green);
+             border-radius: var(--radius-lg);
+             padding: var(--space-sm) var(--space-lg);
+             font-size: var(--text-sm);
+             font-weight: 600;
+             color: var(--color-license-green);
+             text-align: center;
+             font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+             text-transform: uppercase;
+             letter-spacing: 0.5px;
+         }
+        
+        @keyframes pulse {
+             0%, 100% { opacity: 1; }
+             50% { opacity: 0.5; }
+         }
+         
+         /* Responsive Logo Breakpoints */
+         @media (min-width: 768px) {
+             .logo-narrow { display: none; }
+             .logo-wide { display: block; }
+         }
+         
+         @media (max-width: 767px) {
+             .logo-wide { display: none; }
+             .logo-narrow { display: block; }
+             .license-container {
+                 flex-direction: column;
+                 gap: var(--space-sm);
+             }
+         }
         
         .header-subtitle {
             font-size: var(--text-lg);
@@ -102,48 +188,120 @@
             margin: 0 auto;
         }
         
-        .promo-section {
-            background: #FFFFFF;
-            color: var(--color-text-primary);
-            border-radius: var(--radius-xl);
-            padding: var(--space-xl) var(--space-lg);
-            margin-bottom: var(--space-2xl);
-            text-align: center;
-            box-shadow: var(--shadow-lg);
-            position: relative;
-            overflow: hidden;
-            border: 2px solid var(--color-accent);
-        }
+
         
-        .promo-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, transparent 50%, rgba(255,255,255,0.1) 100%);
-            pointer-events: none;
-        }
-        
-        .promo-title {
-            font-size: clamp(var(--text-xl), 4vw, var(--text-3xl));
-            font-weight: 800;
-            margin-bottom: var(--space-lg);
-            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        .promo-subtitle {
-            font-size: clamp(var(--text-lg), 3vw, var(--text-xl));
-            font-weight: 600;
-            margin-bottom: var(--space-sm);
-        }
-        
-        .promo-details {
-            font-size: var(--text-sm);
-            opacity: 0.9;
-        }
-        
+        /* Guide Content Styles */
+          .guide-content {
+              max-width: 1000px;
+              margin: 0 auto;
+              display: flex;
+              flex-direction: column;
+              gap: var(--space-lg);
+              padding: var(--space-md) var(--space-lg);
+              min-height: auto;
+              justify-content: center;
+          }
+  
+          /* Welcome Section */
+          /* Unified Welcome & CTA Section */
+          .unified-welcome-cta {
+              text-align: center;
+          }
+  
+          .unified-card {
+              background: linear-gradient(135deg, var(--color-surface) 0%, rgba(255, 255, 255, 0.95) 100%);
+              border-radius: var(--radius-xl);
+              padding: var(--space-lg) var(--space-md);
+              box-shadow: var(--shadow-xl);
+              border: 3px solid var(--color-primary);
+              transform: translateY(0);
+              transition: transform 0.3s ease, box-shadow 0.3s ease;
+              position: relative;
+              overflow: hidden;
+          }
+  
+          .unified-card::before {
+              content: '';
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              height: 4px;
+              background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+          }
+  
+          .unified-card:hover {
+              transform: translateY(-4px);
+              box-shadow: 0 30px 60px -12px rgba(16, 185, 129, 0.25);
+          }
+  
+          .unified-title {
+              font-size: clamp(var(--text-2xl), 5vw, var(--text-4xl));
+              font-weight: 800;
+              color: var(--color-primary);
+              margin-bottom: var(--space-md);
+              text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+          }
+  
+          .unified-description {
+              font-size: clamp(var(--text-lg), 3vw, var(--text-xl));
+              color: var(--color-text-primary);
+              line-height: 1.7;
+              max-width: 700px;
+              margin: 0 auto var(--space-lg) auto;
+              font-weight: 500;
+          }
+  
+          .cta-content {
+              background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+              color: white;
+              padding: var(--space-lg);
+              border-radius: var(--radius-lg);
+              margin-top: var(--space-md);
+              border: 2px solid rgba(255, 255, 255, 0.1);
+          }
+  
+          .cta-subtitle {
+              font-size: clamp(var(--text-xl), 4vw, var(--text-3xl));
+              font-weight: 800;
+              margin-bottom: var(--space-sm);
+              text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+          }
+  
+          .cta-text {
+              font-size: clamp(var(--text-lg), 3vw, var(--text-xl));
+              margin-bottom: var(--space-md);
+              opacity: 0.95;
+              line-height: 1.5;
+              font-weight: 500;
+          }
+  
+          .primary-cta-btn {
+              background: white;
+              color: var(--color-primary);
+              border: none;
+              padding: var(--space-lg) var(--space-2xl);
+              border-radius: var(--radius-xl);
+              font-size: clamp(var(--text-lg), 3vw, var(--text-2xl));
+              font-weight: 700;
+              cursor: pointer;
+              transition: all 0.3s ease;
+              box-shadow: var(--shadow-lg);
+              text-transform: uppercase;
+              letter-spacing: 1px;
+              min-width: 280px;
+          }
+  
+          .primary-cta-btn:hover {
+              transform: translateY(-3px) scale(1.05);
+              box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.3);
+              background: #f8f9fa;
+          }
+  
+          .primary-cta-btn:active {
+              transform: translateY(-1px) scale(1.02);
+          }
+
         .product-grid {
             display: flex;
             flex-wrap: wrap;
@@ -384,11 +542,11 @@
         }
         
         .footer {
-            text-align: center;
-            padding: var(--space-3xl) 0;
-            border-top: 1px solid var(--color-border);
-            margin-top: var(--space-4xl);
-        }
+             text-align: center;
+             padding: var(--space-md) 0;
+             border-top: 1px solid var(--color-border);
+             margin-top: var(--space-lg);
+         }
         
         .footer p {
             font-size: var(--text-sm);
@@ -497,51 +655,13 @@
             transform: scale(1.02);
         }
         
-        /* Page Break Styles */
-        .page-break {
-            page-break-before: always;
-            break-before: page;
-        }
-        
-        .qr-page {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: var(--space-4xl);
-            text-align: center;
-        }
-        
-        .qr-code-container {
-            background: #FFFFFF;
-            padding: var(--space-3xl);
-            border-radius: var(--radius-xl);
-            box-shadow: var(--shadow-lg);
-            border: 2px solid var(--color-primary);
-        }
-        
-        .qr-code-image {
-            max-width: 300px;
-            width: 100%;
-            height: auto;
-            border-radius: var(--radius-md);
-        }
+
         
         /* Print Styles for 8.5x11 Paper */
         @media print {
             @page {
                 size: 8.5in 11in;
                 margin: 0.5in;
-            }
-            
-            .qr-page {
-                min-height: auto;
-                padding: 2rem;
-            }
-            
-            .qr-code-image {
-                max-width: 250px;
             }
             
             body {
@@ -564,11 +684,7 @@
                 margin-bottom: 0.5rem;
             }
             
-            .promo-section {
-                padding: 1rem;
-                margin-bottom: 1rem;
-                page-break-inside: avoid;
-            }
+
             
             .product-grid {
                 display: flex;
@@ -641,355 +757,61 @@
             }
         }
     </style>
+    <script>
+        // Redirect to catalog function
+        function redirectToCatalog() {
+            window.open('https://www.honestpharmco.com/catalog', '_blank');
+        }
+    </script>
 </head>
 <body>
     <div class="container">
         <header class="header">
-            <img src="HPC_ChromeLogo.png" alt="Honest Pharm Co Logo" class="logo">
-            <p class="header-subtitle">Premium quality cannabis products, tested for potency and purity</p>
+            <!-- Responsive Logo System -->
+            <img src="hpc_transparent.png" alt="Honest Pharm Co Logo" class="logo logo-wide">
+            <img src="hpc_transparent.png" alt="Honest Pharm Co Logo" class="logo logo-narrow">
+            
+            <!-- License and Location Badges -->
+            <div class="license-container">
+                <div class="license-badge">
+                     <div class="license-indicator"></div>
+                     <span>License #: OCM-CULT-24-000099</span>
+                 </div>
+                <div class="location-badge">
+                    Licensed New York State Cannabis Cultivator
+                </div>
+            </div>
+            
+            
         </header>
         
-        <section class="promo-section" role="banner">
-            <h1 class="promo-title">SEPTEMBER PROMOS</h1>
-            <p class="promo-details">Limited time offer, valid through September 30, 2025</p>
-            <p class="promo-subtitle">All orders over $20,000 receive a 10% discount*</p>
-        </section>
+
         
-        <main class="product-grid" role="main">
-            <!-- Double Hitter Indica -->
-            <article class="product-card">
-                <div class="product-header">
-                    <span class="thc-tag">Conc: 82% | Flwr: 28%</span>
-                    <div class="pricing-section">
-                        <span class="price-tag">$12.50</span>
-                        <span class="case-quantity">25 per Case</span>
-                        <span class="case-price">$312.50 per Case</span>
-                    </div>
-                </div>
-                <img src="Double Hitter Indica.png" alt="Double Hitter Indica" class="product-image">
-                <div class="product-info">
-                    <h2 class="product-title">Double Hitter Indica</h2>
-                    <span class="strain-tag tag-indica">Indica</span>
-                    <p class="product-description">Ice Cream Cake infused live resin vape filter tip x Big Berry Blue flower.</p>
-                    <div class="quantities-section">
-                        <h3 class="quantities-title">Available Quantities:</h3>
-                        <div class="quantities">
-                            <span class="quantity-tag">0.25g concentrate</span>
-                            <span class="quantity-tag">1.0g flower</span>
-                        </div>
-                    </div>
-                </div>
-            </article>
-            
-            <!-- Double Hitter Sativa -->
-            <article class="product-card">
-                <div class="product-header">
-                     <span class="thc-tag">Conc: 82% | Flwr: 32%</span>
-                     <div class="pricing-section">
-                         <span class="price-tag">$12.50</span>
-                         <span class="case-quantity">25 per Case</span>
-                         <span class="case-price">$312.50 per Case</span>
-                     </div>
-                 </div>
-                <img src="Double Hitter Sativa.png" alt="Double Hitter Sativa" class="product-image">
-                <div class="product-info">
-                    <h2 class="product-title">Double Hitter Sativa</h2>
-                    <span class="strain-tag tag-sativa">Sativa</span>
-                    <p class="product-description">Laughing Buddha infused live resin vape filter tip  x Acapulco Gold flower</p>
-                    <div class="quantities-section">
-                        <h3 class="quantities-title">Available Quantities:</h3>
-                        <div class="quantities">
-                            <span class="quantity-tag">0.25g concentrate</span>
-                            <span class="quantity-tag">1.0g flower</span>
-                        </div>
-                    </div>
-                </div>
-            </article>
-            
-            <!-- Double Hitter Hybrid -->
-            <article class="product-card">
-                <div class="product-header">
-                     <span class="thc-tag">Conc: 82% | Flwr: 28%</span>
-                     <div class="pricing-section">
-                         <span class="price-tag">$12.50</span>
-                         <span class="case-quantity">25 per Case</span>
-                         <span class="case-price">$312.50 per Case</span>
-                     </div>
-                 </div>
-                <img src="Double Hitter Hybrid.png" alt="Double Hitter Hybrid" class="product-image">
-                <div class="product-info">
-                    <h2 class="product-title">Double Hitter Hybrid</h2>
-                    <span class="strain-tag tag-hybrid">Hybrid</span>
-                    <p class="product-description">Gary Payton infused live resin vape filter tip x Skywalker flower.</p>
-                    <div class="quantities-section">
-                        <h3 class="quantities-title">Available Quantities:</h3>
-                        <div class="quantities">
-                            <span class="quantity-tag">0.25g concentrate</span>
-                            <span class="quantity-tag">1.0g flower</span>
-                        </div>
-                    </div>
-                </div>
-            </article>
-            
-            <!-- 3-Variety Pack -->
-            <article class="product-card">
-                <div class="product-header">
-                    <span class="thc-tag">THC: 82%</span>
-                    <div class="pricing-section">
-                        <span class="price-tag">$15.00</span>
-                        <span class="case-quantity">20 per Case</span>
-                        <span class="case-price">$300.00 per Case</span>
-                    </div>
-                </div>
-                <img src="Double Hitter 3 Pack.png" alt="3-Variety Pack" class="product-image">
-                <div class="product-info">
-                    <h2 class="product-title">Double Hitter 3-Variety Vape Pack</h2>
-                    <span class="strain-tag tag-hybrid">Mixed</span>
-                    <p class="product-description">Experience all three Double Hitter varieties in one convenient pack.</p>
-                    <div class="quantities-section">
-                        <h3 class="quantities-title">Includes:</h3>
-                        <div class="quantities">
-                            <span class="quantity-tag">1 Sativa</span>
-                            <span class="quantity-tag">1 Indica</span>
-                            <span class="quantity-tag">1 Hybrid</span>
-                        </div>
-                    </div>
-                </div>
-            </article>
-            
-            <!-- Chemdawg -->
-            <article class="product-card">
-                <div class="product-header">
-                    <span class="thc-tag">THC: 24%</span>
-                    <div class="pricing-section">
-                        <span class="case-quantity">3.5g | 7g: 25 per case</span>
-                        <span class="case-quantity">14g | 28g: 20 per case</span>
-                        <span class="case-price">$375 | $700 | $1,000 | $1,800</span>
-                    </div>
-                </div>
-                <img src="Chemdawg.png" alt="Chemdawg Premium Cannabis Flower" class="flower-image">
-                <div class="product-info">
-                    <h2 class="product-title">Chemdawg</h2>
-                    <span class="strain-tag tag-hybrid">Hybrid</span>
-                    <p class="product-description">Classic hybrid with diesel and pine; dense, frost‑covered buds and a balanced profile.</p>
-                    <div class="quantities-section">
-                        <h3 class="quantities-title">Available Quantities:</h3>
-                        <div class="quantities">
-                            <span class="quantity-tag">3.5g - $15</span>
-                            <span class="quantity-tag">7g - $28</span>
-                            <span class="quantity-tag">14g - $50</span>
-                            <span class="quantity-tag">28g - $90</span>
-                        </div>
-                    </div>
-                </div>
-            </article>
-            
-            <!-- Icebox Pie -->
-            <article class="product-card">
-                <div class="product-header">
-                    <span class="thc-tag">THC: 29%</span>
-                    <div class="pricing-section">
-                        <span class="case-quantity">3.5g | 7g: 25 per case</span>
-                        <span class="case-quantity">14g | 28g: 20 per case</span>
-                        <span class="case-price">$375 | $700 | $1,000 | $1,800</span>
-                    </div>
-                </div>
-                <img src="Icebox_Pie.png" alt="Icebox Pie Premium Cannabis Flower" class="flower-image">
-                <div class="product-info">
-                    <h2 class="product-title">Icebox Pie</h2>
-                    <span class="strain-tag tag-hybrid">Hybrid</span>
-                    <p class="product-description">Dessert‑leaning hybrid with sweet berry and cool mint notes, purple hues, and heavy trichomes.</p>
-                    <div class="quantities-section">
-                        <h3 class="quantities-title">Available Quantities:</h3>
-                        <div class="quantities">
-                            <span class="quantity-tag">3.5g - $15</span>
-                            <span class="quantity-tag">7g - $28</span>
-                            <span class="quantity-tag">14g - $50</span>
-                            <span class="quantity-tag">28g - $90</span>
-                        </div>
-                    </div>
-                </div>
-            </article>
-            
-            <!-- Midnight Cookies -->
-            <article class="product-card">
-                <div class="product-header">
-                    <span class="thc-tag">THC: 27%</span>
-                    <div class="pricing-section">
-                        <span class="case-quantity">3.5g | 7g: 25 per case</span>
-                        <span class="case-quantity">14g | 28g: 20 per case</span>
-                        <span class="case-price">$375 | $700 | $1,000 | $1,800</span>
-                    </div>
-                </div>
-                <img src="Midnight_Cookies.png" alt="Midnight Cookies Premium Cannabis Flower" class="flower-image">
-                <div class="product-info">
-                    <h2 class="product-title">Midnight Cookies</h2>
-                    <span class="strain-tag tag-indica">Indica</span>
-                    <p class="product-description">Frosty indica with cookie‑dough aromatics and a smooth, dessert‑like finish.</p>
-                    <div class="quantities-section">
-                        <h3 class="quantities-title">Available Quantities:</h3>
-                        <div class="quantities">
-                            <span class="quantity-tag">3.5g - $15</span>
-                            <span class="quantity-tag">7g - $28</span>
-                            <span class="quantity-tag">14g - $50</span>
-                            <span class="quantity-tag">28g - $90</span>
-                        </div>
-                    </div>
-                </div>
-            </article>
-            
-            <!-- Wedding Cake -->
-            <article class="product-card">
-                <div class="product-header">
-                    <span class="thc-tag">THC: 23%</span>
-                    <div class="pricing-section">
-                        <span class="case-quantity">3.5g | 7g: 25 per case</span>
-                        <span class="case-quantity">14g | 28g: 20 per case</span>
-                        <span class="case-price">$375 | $700 | $1,000 | $1,800</span>
-                    </div>
-                </div>
-                <img src="Wedding_Cake.png" alt="Wedding Cake Premium Cannabis Flower" class="flower-image">
-                <div class="product-info">
-                    <h2 class="product-title">Wedding Cake</h2>
-                    <span class="strain-tag tag-indica">Indica</span>
-                    <p class="product-description">Indica classic with vanilla‑frosting sweetness over earthy, peppery undertones; dense buds.</p>
-                    <div class="quantities-section">
-                        <h3 class="quantities-title">Available Quantities:</h3>
-                        <div class="quantities">
-                            <span class="quantity-tag">3.5g - $15</span>
-                            <span class="quantity-tag">7g - $28</span>
-                            <span class="quantity-tag">14g - $50</span>
-                            <span class="quantity-tag">28g - $90</span>
-                        </div>
-                    </div>
-                </div>
-            </article>
-            
-            <!-- Red Velvet -->
-            <article class="product-card">
-                <div class="product-header">
-                    <span class="thc-tag">THC: 23%</span>
-                    <div class="pricing-section">
-                        <span class="case-quantity">3.5g | 7g: 25 per case</span>
-                        <span class="case-quantity">14g | 28g: 20 per case</span>
-                        <span class="case-price">$375 | $700 | $1,000 | $1,800</span>
-                    </div>
-                </div>
-                <img src="Red_Velvet.png" alt="Red Velvet" class="product-image">
-                <div class="product-info">
-                    <h2 class="product-title">Red Velvet</h2>
-                    <span class="strain-tag tag-sativa">Sativa</span>
-                    <p class="product-description">Bright sativa with cocoa‑and‑cream aromatics over light spice; fluffy, resin‑dusted nugs.</p>
-                    <div class="quantities-section">
-                        <h3 class="quantities-title">Available Quantities:</h3>
-                        <div class="quantities">
-                            <span class="quantity-tag">3.5g - $15</span>
-                            <span class="quantity-tag">7g - $28</span>
-                            <span class="quantity-tag">14g - $50</span>
-                            <span class="quantity-tag">28g - $90</span>
-                        </div>
-                    </div>
-                </div>
-            </article>
-            
-            <!-- PUMA PR-13 -->
-            <article class="product-card">
-                <div class="product-header">
-                    <span class="thc-tag">THC: 25%</span>
-                    <div class="pricing-section">
-                        <span class="price-tag">$5.00</span>
-                        <span class="case-quantity">50 per Case</span>
-                        <span class="case-price">$250.00 per Case</span>
-                    </div>
-                </div>
-                <img src="Puma PR13.png" alt="PUMA PR-13" class="product-image">
-                <div class="product-info">
-                    <h2 class="product-title">PUMA PR-13</h2>
-                    <span class="strain-tag tag-indica">Indica</span>
-                    <p class="product-description">Premium 1 gram blunts.</p>
-                    <div class="quantities-section">
-                        <h3 class="quantities-title">Available Quantities:</h3>
-                        <div class="quantities">
-                            <span class="quantity-tag">1g blunt</span>
-                        </div>
-                    </div>
-                </div>
-            </article>
-            
-            <!-- Day to Night Pre-Roll 4-pack -->
-            <article class="product-card">
-                <div class="product-header">
-                    <span class="thc-tag">Day: 31% | Night: 27%</span>
-                    <div class="pricing-section">
-                        <span class="price-tag">$15.00</span>
-                        <span class="case-quantity">20 per Case</span>
-                        <span class="case-price">$320.00 per Case</span>
-                    </div>
-                </div>
-                <img src="Day to Night.png" alt="Day to Night Pre-Roll 4-pack" class="product-image">
-                <div class="product-info">
-                    <h2 class="product-title">Day to Night Pre-Roll 4-pack</h2>
-                    <div class="strain-tags-container">
-                        <span class="strain-tag tag-sativa">Sativa</span>
-                        <span class="strain-tag tag-indica">Indica</span>
-                    </div>
-                    <p class="product-description">Pack of 4 Pre-Rolls.</p>
-                    <div class="quantities-section">
-                        <h3 class="quantities-title">Available Quantities:</h3>
-                        <div class="quantities">
-                            <span class="quantity-tag">2 Sativa 1g Pre-Rolls and 2 Indica 1g Pre-Rolls</span>
-                        </div>
-                    </div>
-                </div>
-            </article>
-            
 
-            <!-- Jam Master Jays -->
-            <article class="product-card">
-                <div class="product-header">
-                    <span class="thc-tag">THC: 30%</span>
-                    <div class="pricing-section">
-                        <span class="price-tag">$15.00</span>
-                        <span class="case-quantity">20 per Case</span>
-                        <span class="case-price">$300.00 per Case</span>
+        
+        <main class="guide-content" role="main">
+            <!-- Unified Welcome & CTA Section -->
+            <section class="unified-welcome-cta">
+                <div class="unified-card">
+                    <h2 class="unified-title">Welcome to Honest Pharm Co.</h2>
+                    <p class="unified-description">
+                        We've moved our product catalog to a new, improved platform with our complete selection of premium cannabis products.
+                    </p>
+                    <div class="cta-content">
+                        <h3 class="cta-subtitle">Access Our Product Catalog</h3>
+                        <p class="cta-text">Browse our premium cannabis selection with detailed information and secure ordering.</p>
+                        <button onclick="redirectToCatalog()" class="primary-cta-btn">
+                             VIEW PRODUCT CATALOG
+                         </button>
                     </div>
                 </div>
-                <img src="JMJ.png" alt="Jam Master Jays" class="product-image">
-                <div class="product-info">
-                    <h2 class="product-title">Jam Master Jays</h2>
-                    <span class="strain-tag tag-hybrid">Hybrid</span>
-                    <p class="product-description">Pack of 4 premium pre-rolls.</p>
-                    <div class="quantities-section">
-                        <h3 class="quantities-title">Available Quantities:</h3>
-                        <div class="quantities">
-                            <span class="quantity-tag">4-Pack 2g</span>
-                        </div>
-                    </div>
-                </div>
-            </article>
-            
-
+            </section>
         </main>
     </div>
     
-    <!-- Second Page with QR Code -->
-    <div class="page-break qr-page">
-        <div class="qr-code-container">
-            <h2 style="color: var(--color-primary); margin-bottom: var(--space-xl); font-size: var(--text-3xl); font-weight: 700;">Order & Connect</h2>
-            <p style="margin-bottom: var(--space-2xl); font-size: var(--text-lg); color: var(--color-text-secondary); max-width: 500px;">Scan the QR code below to place your order or connect with us directly. Optimized for mobile scanning.</p>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSf7Dr4O0r3cLaNi41QeGADxk1iu9oqTcNxHgwLyTr65pQOwSA/viewform?usp=header" target="_blank" rel="noopener noreferrer" title="Click to open order form">
-                <img src="QR code.png" alt="Order & Connect QR Code" class="qr-code-image" style="cursor: pointer;">
-            </a>
-            <div style="margin-top: var(--space-xl); padding: var(--space-lg); background: var(--color-background-alt); border-radius: var(--radius-md);">
-                <p style="font-size: var(--text-sm); color: var(--color-text-secondary); margin: 0;">Contact: david@honestpharmco.com | 585-519-9778</p>
-            </div>
-        </div>
-        
         <footer class="footer">
             <p>© 2025 All products are tested for quality and potency.</p>
             <p>For wholesale inquiries, please contact david@honestpharmco.com | 585-519-9778</p>
-            <p style="font-size: var(--text-xs); color: var(--color-text-secondary);">*any orders with the September Promotion must be Cash on Delivery</p>
         </footer>
-    </div>
 </body>
 </html>
