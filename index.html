@@ -758,9 +758,16 @@
         }
     </style>
     <script>
-        // Redirect to catalog function
+        // Automatic redirect on page load
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                window.location.href = 'https://honestpharmco.com/catalog';
+            }, 2000); // 2 second delay to show the page briefly
+        });
+        
+        // Redirect to catalog function (for button click - fallback if auto redirect fails)
         function redirectToCatalog() {
-            window.open('https://www.honestpharmco.com/catalog', '_blank');
+            window.location.href = 'https://honestpharmco.com/catalog';
         }
     </script>
 </head>
